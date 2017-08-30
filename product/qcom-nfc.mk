@@ -1,9 +1,5 @@
 ifneq ($(TARGET_DEVICE),a33g)
 
-# Property
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.nfc.sec_hal=true
-
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
