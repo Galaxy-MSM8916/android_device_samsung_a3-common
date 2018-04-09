@@ -87,6 +87,10 @@ lib/libalgobsx.so
 lib/libsec-ril.so|1c02d1c3ff89b2da9194fa1d1fc099ff
 lib/libsec-ril-dsds.so|0566138fa11f8176fd51c2f3bb65156c
 
+# QSEEcom
+bin/qseecomd
+vendor/lib/libQSEEComAPI.so
+
 # Qualcomm framework
 vendor/lib/libdiag.so
 vendor/lib/libdsutils.so
