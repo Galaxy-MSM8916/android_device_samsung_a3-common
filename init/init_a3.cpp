@@ -29,89 +29,62 @@
 
 #include <init_msm8916.h>
 
-using android::base::GetProperty;
-
 void init_target_properties(void)
 {
-	std::string bootloader = GetProperty("ro.bootloader","");
-
-	char *bootloader_str = NULL;
-	char *build_id = NULL;
 	char *device = NULL;
 	char *model = NULL;
-	char *name = NULL;
-	char *operator_alpha = NULL;
-	char *operator_numeric = NULL;
-	char *version_release = NULL;
 
-    build_id = (char *)"LRX22G";
-    version_release = (char *)"5.0.2";
-
-	int network_type = 1;
+	std::string bootloader = android::base::GetProperty("ro.bootloader", "");
 
 	if (bootloader.find("A300FU") == 0) {
-		device = (char *)"a3ulte";
+		device = (char *)"a3ultexx";
 		model = (char *)"SM-A300FU";
-		name = (char *)"a3ultexx";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("A300YZ") == 0) {
 		device = (char *)"a3ltezt";
 		model = (char *)"SM-A300YZ";
-		name = (char *)"a3ltezt";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("A3000") == 0) {
 		device = (char *)"a3ltechn";
 		model = (char *)"SM-A3000";
-		name = (char *)"a3ltezc";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("A3009") == 0) {
 		device = (char *)"a3ltectc";
 		model = (char *)"SM-A3009";
-		name = (char *)"a3ltectc";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("A300F") == 0) {
-		device = (char *)"a3lte";
+		device = (char *)"a3ltexx";
 		model = (char *)"SM-A300F";
-		name = (char *)"a3ltexx";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("A300H") == 0) {
 		device = (char *)"a33g";
 		model = (char *)"SM-A300H";
-		name = (char *)"a33g";
-		network_type=GSM_DEVICE;
+		set_gsm_properties();
 	}
 	else if (bootloader.find("A300M") == 0) {
-		device = (char *)"a3lte";
+		device = (char *)"a3lteub";
 		model = (char *)"SM-A300M";
-		name = (char *)"a3lteub";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("A300G") == 0) {
-		device = (char *)"a3ltedd";
+		device = (char *)"a3ltezso";
 		model = (char *)"SM-A300G";
-		name = (char *)"a3ltezso";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("A300Y") == 0) {
-		device = (char *)"a3ulte";
+		device = (char *)"a3ultedv";
 		model = (char *)"SM-A300Y";
-		name = (char *)"a3ultedv";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else {
 		return;
 	}
 
-	/* make sure device name is set */
-	if (name == NULL)
-		name = device;
-
 	/* set the properties */
-	set_target_properties(build_id, bootloader_str, name, device, model,
-		       network_type, operator_alpha, operator_numeric, version_release);
+	set_target_properties(device, model);
 }
